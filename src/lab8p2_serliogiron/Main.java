@@ -751,7 +751,11 @@ public class Main extends javax.swing.JFrame {
             limpiarComandField();
         }
         else if(token[0].equals("!b")){
-            System.out.println("Diner");
+            String text = TextArea.getText();
+            String text2 = "";
+            text2 = "\n" + "Dinero: " + jugador.getDinero();
+            TextArea.setText("\n" + text + text2);
+            
             limpiarComandField();
         }
         
