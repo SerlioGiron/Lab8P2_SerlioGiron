@@ -81,7 +81,7 @@ public class Main extends javax.swing.JFrame {
         crear_mascota_field_costo = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        TextArea = new javax.swing.JTextArea();
         jTextField11 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
 
@@ -345,9 +345,20 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Administracion", jPanel2);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane4.setViewportView(jTextArea1);
+        TextArea.setColumns(20);
+        TextArea.setRows(5);
+        jScrollPane4.setViewportView(TextArea);
+
+        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField11ActionPerformed(evt);
+            }
+        });
+        jTextField11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField11KeyPressed(evt);
+            }
+        });
 
         jButton6.setText(">");
 
@@ -360,10 +371,10 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 891, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 79, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -484,14 +495,20 @@ public class Main extends javax.swing.JFrame {
     ArrayList <Zona> zonas = new ArrayList();
     ArrayList <Item> itemparazonas = new ArrayList();
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        
         String nombre = zona_nombre.getText();
         double derrumbe = Double.parseDouble(zona_derrumbe.getText());
         double atacado = Double.parseDouble(zona_ataque.getText());
+        //capturo lo de los fields
         
         Zona zona = new Zona(contzonas, nombre, derrumbe, atacado);
+        //creo la zona
+        
+        //System.out.println("-- itemparazonas --");
+        //System.out.println(itemparazonas);
         
         zona.getItems().addAll(itemparazonas);
-        
+        //le agrego al objto zona, su lista de items
         zonas.add(zona);
         
         contzonas++;
@@ -505,12 +522,16 @@ public class Main extends javax.swing.JFrame {
             itemparazonas.remove(i);
         }
         
-        jList_items.removeAll();
+        DefaultListModel m = new DefaultListModel();
+        m = (DefaultListModel)jList_items.getModel();
+        m.removeAllElements();
+        jList_items.setModel(m);
+        
         
         System.out.println("-- zonas --");
         System.out.println(zonas);
     }//GEN-LAST:event_jButton5MouseClicked
-    int contzonas = 0;
+    int contzonas = 1;
     private void Agregar_itemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Agregar_itemMouseClicked
         DefaultListModel modelo = new DefaultListModel();
         modelo = (DefaultListModel)jList_agregar_item.getModel();
@@ -527,6 +548,17 @@ public class Main extends javax.swing.JFrame {
         //System.out.println("-- itemparazonas --");
         //System.out.println(itemparazonas);
     }//GEN-LAST:event_Agregar_itemMouseClicked
+
+    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField11ActionPerformed
+
+    private void jTextField11KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField11KeyPressed
+        if (evt.getKeyCode() == 10) {
+            //System.out.println("key code");
+            //metodo
+        }
+    }//GEN-LAST:event_jTextField11KeyPressed
 
     /**
      * @param args the command line arguments
@@ -565,6 +597,7 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar_item;
+    private javax.swing.JTextArea TextArea;
     private javax.swing.JButton boton_crear_item;
     private javax.swing.JButton botoncolor;
     private javax.swing.JColorChooser colorchooser;
@@ -605,7 +638,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTable tabla_mascotas;
     private javax.swing.JTextField zona_ataque;
