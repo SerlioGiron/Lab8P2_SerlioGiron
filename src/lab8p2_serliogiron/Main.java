@@ -595,6 +595,8 @@ public class Main extends javax.swing.JFrame {
         tabla_mascotas.setModel(modelo);
     }
     
+    Mascota mascota = new Mascota();
+    
     public void TextArea(String s){
         
         String [] token = s.split(" ");
@@ -623,11 +625,19 @@ public class Main extends javax.swing.JFrame {
                 hilodebarra.start();
             }
             
+            //Mascota m = new Mascota(modelo.getValueAt(index, 0), modelo.getValueAt(index, 1), modelo.getValueAt(index, 2), modelo.getValueAt(index, 3), modelo.getValueAt(index, 4))
+            
             limpiarComandField();
         }
         else if(token[0].equals("!pet") && token[1].equals("feed")){
             System.out.println("-- items --");
             System.out.println(items);
+            
+            int id = Integer.parseInt(token[3]);
+            
+            if (items.get(id).isAlimento()) {
+                
+            }
             limpiarComandField();
         }
         else if(token[0].equals("!pet") && token[1].equals("list")){
