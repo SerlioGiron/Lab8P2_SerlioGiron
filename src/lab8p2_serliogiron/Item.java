@@ -19,9 +19,25 @@ public class Item {
     double obtencion;
     double precio;
 
+    public Item() {
+    }
+    
+    
+
+    public Item(int id, String nombre, boolean alimento, double obtencion, double precio) {
+        this.id = id;
+        this.nombre = nombre;
+        this.alimento = alimento;
+        this.obtencion = obtencion;
+        this.precio = precio;
+    }
+    
+    
+    
+
     @Override
     public String toString() {
-        return nombre;
+        return id + ". " + nombre;
     }
     
     
