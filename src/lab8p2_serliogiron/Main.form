@@ -64,7 +64,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jProgressBar1" max="32767" attributes="0"/>
+                          <Component id="barra" max="32767" attributes="0"/>
                           <Component id="jScrollPane3" alignment="0" pref="839" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -75,7 +75,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="jProgressBar1" min="-2" pref="61" max="-2" attributes="0"/>
+                      <Component id="barra" min="-2" pref="61" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane3" pref="398" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -98,8 +98,8 @@
                         <Column editable="false" title="Nombre" type="java.lang.Object"/>
                         <Column editable="false" title="Delay" type="java.lang.Object"/>
                         <Column editable="false" title="Costo" type="java.lang.Object"/>
-                        <Column editable="true" title="Color" type="java.lang.Object"/>
                         <Column editable="false" title="Puntos de Vida" type="java.lang.Object"/>
+                        <Column editable="false" title="Color" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -138,7 +138,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JProgressBar" name="jProgressBar1">
+            <Component class="javax.swing.JProgressBar" name="barra">
             </Component>
           </SubComponents>
         </Container>
@@ -354,6 +354,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton2MouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">

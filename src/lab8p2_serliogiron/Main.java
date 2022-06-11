@@ -24,7 +24,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         TextArea.setText("--- mascotas --- \n" + "VACIO \n" + "--- Zonas --- \n" + "VACIO\n" + "--- Items --- \n" + "VACIO");
-        
+        hilodetabla = new HiloTable(tabla_mascotas);
     }
     
     static ArrayList <Item> items = new ArrayList();
@@ -44,7 +44,7 @@ public class Main extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabla_mascotas = new javax.swing.JTable();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        barra = new javax.swing.JProgressBar();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -94,11 +94,11 @@ public class Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Delay", "Costo", "Color", "Puntos de Vida"
+                "Nombre", "Delay", "Costo", "Puntos de Vida", "Color"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -114,7 +114,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(barra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -122,7 +122,7 @@ public class Main extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
                 .addContainerGap())
@@ -155,6 +155,11 @@ public class Main extends javax.swing.JFrame {
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -440,20 +445,9 @@ public class Main extends javax.swing.JFrame {
         Mascota mas = new Mascota(nombre, vida, delay, costo, color);
         mascotas.add(mas);
         
-        Object[] row = new Object[5];
-        
-        row[0] = nombre;
-        row[1] = vida;
-        row[2] = delay;
-        row[3] = costo;
-        row[4] = color;
-        
         JOptionPane.showMessageDialog(this, "Mascota agregada");
         
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo = (DefaultTableModel)tabla_mascotas.getModel();
-        modelo.addRow(row);
-        tabla_mascotas.setModel(modelo);
+        
         
         crear_mascota_field_nombre.setText("");
         crear_mascota_field_costo.setText("");
@@ -581,7 +575,25 @@ public class Main extends javax.swing.JFrame {
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         TextArea(comandos_textfield.getText());
     }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
     
+    public void AgregarMascotaTable(Mascota m){
+        Object[] row = new Object[5];
+        
+        row[0] = m.getNombre();
+        row[1] = m.getDelay();
+        row[2] = m.getCosto();
+        row[3] = m.getVida();
+        row[4] = m.getColor();
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo = (DefaultTableModel)tabla_mascotas.getModel();
+        modelo.addRow(row);
+        tabla_mascotas.setModel(modelo);
+    }
     
     public void TextArea(String s){
         
@@ -604,7 +616,34 @@ public class Main extends javax.swing.JFrame {
             limpiarComandField();
         }
         else if(token[0].equals("!adopt")){
-            System.out.println("!adopt");
+            
+            String nombre;
+            boolean aver = false;
+            int posicion = -1;
+            
+            for (int i = 0; i < mascotas.size(); i++) {
+                nombre = mascotas.get(i).getNombre();
+                
+                if (nombre.equals(token[1])) {
+                    aver = true;
+                    posicion = i;
+                }
+            }
+            
+            if (aver) {
+                Mascota mascota = new Mascota();
+                mascota = mascotas.get(posicion);
+                AgregarMascotaTable(mascota);
+                hilodetabla.start();
+            }
+            
+//            System.out.println("tablarowcount = " + tabla_mascotas.getRowCount());
+//            
+//            DefaultTableModel modelo = new DefaultTableModel();
+//            modelo = (DefaultTableModel)tabla_mascotas.getModel();
+//            System.out.println("columna = " + modelo.getValueAt(1, 2));
+            
+            
             limpiarComandField();
         }
         else if(token[0].equals("!mine")){
@@ -702,6 +741,7 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar_item;
     private javax.swing.JTextArea TextArea;
+    private javax.swing.JProgressBar barra;
     private javax.swing.JButton boton_crear_item;
     private javax.swing.JButton botoncolor;
     private javax.swing.JColorChooser colorchooser;
@@ -737,7 +777,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -748,4 +787,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField zona_derrumbe;
     private javax.swing.JTextField zona_nombre;
     // End of variables declaration//GEN-END:variables
+
+HiloTable hilodetabla;
+
 }
