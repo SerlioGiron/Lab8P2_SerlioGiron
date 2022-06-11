@@ -23,9 +23,11 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        TextArea.setText("--- mascotas --- \n" + "VACIO \n" + "--- Zonas --- \n" + "VACIO\n" + "--- Items --- \n" + "VACIO");
+        
     }
     
-    ArrayList <Item> ids = new ArrayList();
+    static ArrayList <Item> items = new ArrayList();
     
 
     /**
@@ -431,6 +433,7 @@ public class Main extends javax.swing.JFrame {
         Color color = botoncolor.getBackground();
         
         Mascota mas = new Mascota(nombre, vida, delay, costo, color);
+        mascotas.add(mas);
         
         Object[] row = new Object[5];
         
@@ -453,8 +456,11 @@ public class Main extends javax.swing.JFrame {
         crear_mascota_field_puntosvida.setText("");
         botoncolor.setBackground(Color.gray);
         
+        TextArea.setText(limpiarTextArea());
+        TextArea.setText(updateTextArea());
+        
     }//GEN-LAST:event_jButton2MouseClicked
-
+    static ArrayList <Mascota> mascotas = new ArrayList();
     private void boton_crear_itemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_crear_itemMouseClicked
         
         String nombre = item_nombre.getText();
@@ -469,11 +475,11 @@ public class Main extends javax.swing.JFrame {
         double obtenion = Double.parseDouble(item_obtencion.getText());
         double precio = Double.parseDouble(item_costo.getText());
         
-        int id = ids.size()+1;
+        int id = items.size()+1;
         
         Item item = new Item(id, nombre, alimento, obtenion, precio);
         
-        ids.add(item);
+        items.add(item);
         
         DefaultListModel modelo = new DefaultListModel();
         modelo = (DefaultListModel)jList_agregar_item.getModel();
@@ -487,12 +493,15 @@ public class Main extends javax.swing.JFrame {
         item_obtencion.setText("");
         item_costo.setText("");
         
+        TextArea.setText(limpiarTextArea());
+        TextArea.setText(updateTextArea());
+        
     }//GEN-LAST:event_boton_crear_itemMouseClicked
     
     private void item_costoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_item_costoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_item_costoMouseClicked
-    ArrayList <Zona> zonas = new ArrayList();
+    static ArrayList <Zona> zonas = new ArrayList();
     ArrayList <Item> itemparazonas = new ArrayList();
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         
@@ -530,6 +539,10 @@ public class Main extends javax.swing.JFrame {
         
         System.out.println("-- zonas --");
         System.out.println(zonas);
+        
+        TextArea.setText(limpiarTextArea());
+        TextArea.setText(updateTextArea());
+        
     }//GEN-LAST:event_jButton5MouseClicked
     int contzonas = 1;
     private void Agregar_itemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Agregar_itemMouseClicked
@@ -556,10 +569,25 @@ public class Main extends javax.swing.JFrame {
     private void jTextField11KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField11KeyPressed
         if (evt.getKeyCode() == 10) {
             //System.out.println("key code");
-            //metodo
+            TextArea();
         }
     }//GEN-LAST:event_jTextField11KeyPressed
-
+    
+    
+    public static void TextArea(){
+        
+    }
+    
+    public static String limpiarTextArea(){
+        String a = "";
+        return a;
+    }
+    
+    public static String updateTextArea(){
+        String a = "--- mascotas --- \n" + mascotas + "\n" + "--- Zonas --- \n" + zonas + "\n" +"--- Items --- \n" + items;
+        return a;
+    }
+    
     /**
      * @param args the command line arguments
      */
