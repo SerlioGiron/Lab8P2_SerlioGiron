@@ -84,7 +84,7 @@ public class Main extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         TextArea = new javax.swing.JTextArea();
-        jTextField11 = new javax.swing.JTextField();
+        comandos_textfield = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -351,18 +351,23 @@ public class Main extends javax.swing.JFrame {
         TextArea.setRows(5);
         jScrollPane4.setViewportView(TextArea);
 
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+        comandos_textfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+                comandos_textfieldActionPerformed(evt);
             }
         });
-        jTextField11.addKeyListener(new java.awt.event.KeyAdapter() {
+        comandos_textfield.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField11KeyPressed(evt);
+                comandos_textfieldKeyPressed(evt);
             }
         });
 
         jButton6.setText(">");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -373,7 +378,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comandos_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 79, Short.MAX_VALUE)))
@@ -386,7 +391,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comandos_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
@@ -562,20 +567,91 @@ public class Main extends javax.swing.JFrame {
         //System.out.println(itemparazonas);
     }//GEN-LAST:event_Agregar_itemMouseClicked
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void comandos_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comandos_textfieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_comandos_textfieldActionPerformed
 
-    private void jTextField11KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField11KeyPressed
+    private void comandos_textfieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comandos_textfieldKeyPressed
         if (evt.getKeyCode() == 10) {
             //System.out.println("key code");
-            TextArea();
+            TextArea(comandos_textfield.getText());
         }
-    }//GEN-LAST:event_jTextField11KeyPressed
+    }//GEN-LAST:event_comandos_textfieldKeyPressed
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        TextArea(comandos_textfield.getText());
+    }//GEN-LAST:event_jButton6MouseClicked
     
     
-    public static void TextArea(){
+    public void TextArea(String s){
         
+        String [] token = s.split(" ");
+        
+        if (s.equals("!clear")) {
+            TextArea.setText(limpiarTextArea());
+            limpiarComandField();
+        }
+        else if(token[0].equals("!pet") && token[1].equals("active")){
+            System.out.println("!pet active");
+            limpiarComandField();
+        }
+        else if(token[0].equals("!pet") && token[1].equals("feed")){
+            System.out.println("!pet feed");
+            limpiarComandField();
+        }
+        else if(token[0].equals("!pet") && token[1].equals("list")){
+            System.out.println("!pet list");
+            limpiarComandField();
+        }
+        else if(token[0].equals("!adopt")){
+            System.out.println("!adopt");
+            limpiarComandField();
+        }
+        else if(token[0].equals("!mine")){
+            System.out.println("!mine");
+            limpiarComandField();
+        }
+        else if(token[0].equals("!fish")){
+            System.out.println("!fish");
+            limpiarComandField();
+        }
+        else if(token[0].equals("!zone") && token[1].equals("list")){
+            System.out.println("!zone list");
+            limpiarComandField();
+        }
+        else if(token[0].equals("!sell")){
+            System.out.println("!sell idItem");
+            limpiarComandField();
+        }
+        else if(token[0].equals("!item") && token[1].equals("list")){
+            System.out.println("!item list");
+            limpiarComandField();
+        }
+        else if(token[0].equals("!buy")){
+            System.out.println("!buy");
+            limpiarComandField();
+        }
+        else if(token[0].equals("!bag")){
+            System.out.println("!bag");
+            limpiarComandField();
+        }
+        else if(token[0].equals("!d")){
+            System.out.println("!d");
+            limpiarComandField();
+        }
+        else if(token[0].equals("!w")){
+            System.out.println("!w");
+            limpiarComandField();
+        }
+        else if(token[0].equals("!b")){
+            System.out.println("!b");
+            limpiarComandField();
+        }
+        
+    }
+    
+    public void limpiarComandField(){
+        comandos_textfield.setText("");
     }
     
     public static String limpiarTextArea(){
@@ -629,6 +705,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton boton_crear_item;
     private javax.swing.JButton botoncolor;
     private javax.swing.JColorChooser colorchooser;
+    private javax.swing.JTextField comandos_textfield;
     private javax.swing.JFormattedTextField crear_mascota_field_costo;
     private javax.swing.JTextField crear_mascota_field_delay;
     private javax.swing.JTextField crear_mascota_field_nombre;
@@ -666,7 +743,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTable tabla_mascotas;
     private javax.swing.JTextField zona_ataque;
     private javax.swing.JTextField zona_derrumbe;
