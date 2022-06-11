@@ -489,6 +489,9 @@ public class Main extends javax.swing.JFrame {
         double atacado = Double.parseDouble(zona_ataque.getText());
         
         Zona zona = new Zona(contzonas, nombre, derrumbe, atacado);
+        
+        zona.getItems().addAll(itemparazonas);
+        
         zonas.add(zona);
         
         contzonas++;
@@ -496,6 +499,11 @@ public class Main extends javax.swing.JFrame {
         zona_ataque.setText("");
         zona_derrumbe.setText("");
         zona_nombre.setText("");
+        
+        for (int i = 0; i < itemparazonas.size(); i++) 
+        {
+            itemparazonas.remove(i);
+        }
         
         jList_items.removeAll();
         
