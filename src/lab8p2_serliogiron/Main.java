@@ -65,18 +65,18 @@ public class Main extends javax.swing.JFrame {
         boton_crear_item = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        zona_nombre = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        zona_derrumbe = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        zona_ataque = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList_agregar_item = new javax.swing.JList<>();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jButton4 = new javax.swing.JButton();
+        jList_items = new javax.swing.JList<>();
+        Agregar_item = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         crear_mascota_field_costo = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
@@ -196,11 +196,22 @@ public class Main extends javax.swing.JFrame {
 
         jLabel15.setText("Items");
 
-        jScrollPane2.setViewportView(jList2);
+        jList_items.setModel(new DefaultListModel());
+        jScrollPane2.setViewportView(jList_items);
 
-        jButton4.setText("Agregar Item");
+        Agregar_item.setText("Agregar Item");
+        Agregar_item.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Agregar_itemMouseClicked(evt);
+            }
+        });
 
         jButton5.setText("Crear Zona");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
 
         crear_mascota_field_costo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
@@ -249,15 +260,15 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(jLabel10)
                             .addComponent(jLabel12)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                            .addComponent(jTextField10)
+                            .addComponent(zona_derrumbe, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                            .addComponent(zona_ataque)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jTextField8))
+                            .addComponent(zona_nombre))
                         .addGap(37, 37, 37)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel15)
                             .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Agregar_item, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(156, 156, 156))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -283,7 +294,7 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(crear_mascota_field_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(item_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(zona_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -292,7 +303,7 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(crear_mascota_field_puntosvida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBox1)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(zona_derrumbe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -302,7 +313,7 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(crear_mascota_field_delay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(item_obtencion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(zona_ataque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -323,10 +334,10 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(jButton4)
+                        .addGap(26, 26, 26)
+                        .addComponent(Agregar_item)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5)))
                 .addContainerGap(112, Short.MAX_VALUE))
@@ -373,9 +384,10 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -469,6 +481,44 @@ public class Main extends javax.swing.JFrame {
     private void item_costoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_item_costoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_item_costoMouseClicked
+    ArrayList <Zona> zonas = new ArrayList();
+    ArrayList <Item> itemparazonas = new ArrayList();
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        String nombre = zona_nombre.getText();
+        double derrumbe = Double.parseDouble(zona_derrumbe.getText());
+        double atacado = Double.parseDouble(zona_ataque.getText());
+        
+        Zona zona = new Zona(contzonas, nombre, derrumbe, atacado);
+        zonas.add(zona);
+        
+        contzonas++;
+        
+        zona_ataque.setText("");
+        zona_derrumbe.setText("");
+        zona_nombre.setText("");
+        
+        jList_items.removeAll();
+        
+        System.out.println("-- zonas --");
+        System.out.println(zonas);
+    }//GEN-LAST:event_jButton5MouseClicked
+    int contzonas = 0;
+    private void Agregar_itemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Agregar_itemMouseClicked
+        DefaultListModel modelo = new DefaultListModel();
+        modelo = (DefaultListModel)jList_agregar_item.getModel();
+        
+        DefaultListModel modelo2 = new DefaultListModel();
+        modelo2 = (DefaultListModel)jList_items.getModel();
+        
+        modelo2.addElement(modelo.getElementAt(jList_agregar_item.getSelectedIndex()));
+        
+        jList_items.setModel(modelo2);
+        
+        itemparazonas.add((Item)modelo.getElementAt(jList_agregar_item.getSelectedIndex()));
+        
+        //System.out.println("-- itemparazonas --");
+        //System.out.println(itemparazonas);
+    }//GEN-LAST:event_Agregar_itemMouseClicked
 
     /**
      * @param args the command line arguments
@@ -506,6 +556,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Agregar_item;
     private javax.swing.JButton boton_crear_item;
     private javax.swing.JButton botoncolor;
     private javax.swing.JColorChooser colorchooser;
@@ -517,7 +568,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField item_nombre;
     private javax.swing.JTextField item_obtencion;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
@@ -536,8 +586,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList_agregar_item;
+    private javax.swing.JList<String> jList_items;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -548,10 +598,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JTable tabla_mascotas;
+    private javax.swing.JTextField zona_ataque;
+    private javax.swing.JTextField zona_derrumbe;
+    private javax.swing.JTextField zona_nombre;
     // End of variables declaration//GEN-END:variables
 }

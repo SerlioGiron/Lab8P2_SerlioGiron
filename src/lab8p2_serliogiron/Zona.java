@@ -6,6 +6,7 @@
 package lab8p2_serliogiron;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -15,6 +16,7 @@ public class Zona {
 //     id zona (Autonumérico y único), nombre, lista de ítems disponible para 
     //el numero de zona, remuneración (aleatorio: id Zona*100-idZona*300), probabilidad de derrumbe 
     //(en caso de minar) o probabilidad de ser atacado por un megalodon (en caso de pescar).
+    static Random random = new Random();
     
     int id;
     String nombre;
@@ -22,6 +24,16 @@ public class Zona {
     int remuneracion;
     double derrumbe;//en caso de minar)
     double atacado;//megalodon
+
+    public Zona(int id, String nombre, double derrumbe, double atacado) {
+        this.id = id;
+        this.nombre = nombre;
+        this.derrumbe = derrumbe;
+        this.atacado = atacado;
+        this.remuneracion = (id*100)+random.nextInt(id*300);
+    }
+    
+    
 
     @Override
     public String toString() {
