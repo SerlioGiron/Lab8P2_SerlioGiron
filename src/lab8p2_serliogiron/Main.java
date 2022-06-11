@@ -604,7 +604,25 @@ public class Main extends javax.swing.JFrame {
             limpiarComandField();
         }
         else if(token[0].equals("!pet") && token[1].equals("active")){
-            System.out.println("!pet active");
+            String nombre = (String)token[2];
+            
+            int cont = 0;
+            int index = 0;
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo = (DefaultTableModel)tabla_mascotas.getModel();
+            
+            for (int i = 0; i < tabla_mascotas.getRowCount(); i++) {
+                if (nombre.equals(modelo.getValueAt(i, 0))) {
+                    cont++;
+                    index = i;
+                }
+            }
+            
+            if (cont > 0) {
+                hilodebarra = new HiloBarra(barra, (String)modelo.getValueAt(index, 0), tabla_mascotas);
+                hilodebarra.start();
+            }
+            
             limpiarComandField();
         }
         else if(token[0].equals("!pet") && token[1].equals("feed")){
@@ -789,5 +807,6 @@ public class Main extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 HiloTable hilodetabla;
+HiloBarra hilodebarra;
 
 }

@@ -39,9 +39,12 @@ public class HiloTable extends Thread{
                 if (tiempo % delay == 0) {
                     vida = vida - 100;
                 }
-                
-                modelo.setValueAt(vida, i, 3);
-                tabla.setModel(modelo);
+                if (vida<=0) {
+                    modelo.removeRow(i);
+                }else{
+                    modelo.setValueAt(vida, i, 3);
+                    tabla.setModel(modelo);
+                }
             }
             tiempo += 100;
             try {
