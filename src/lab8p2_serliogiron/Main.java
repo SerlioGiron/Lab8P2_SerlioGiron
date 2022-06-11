@@ -626,7 +626,8 @@ public class Main extends javax.swing.JFrame {
             limpiarComandField();
         }
         else if(token[0].equals("!pet") && token[1].equals("feed")){
-            System.out.println("!pet feed");
+            System.out.println("-- items --");
+            System.out.println(items);
             limpiarComandField();
         }
         else if(token[0].equals("!pet") && token[1].equals("list")){
