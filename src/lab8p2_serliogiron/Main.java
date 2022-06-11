@@ -625,7 +625,8 @@ public class Main extends javax.swing.JFrame {
                 hilodebarra.start();
             }
             
-            //Mascota m = new Mascota(modelo.getValueAt(index, 0), modelo.getValueAt(index, 1), modelo.getValueAt(index, 2), modelo.getValueAt(index, 3), modelo.getValueAt(index, 4))
+            Mascota m = new Mascota((String)modelo.getValueAt(index, 0), (Integer)modelo.getValueAt(index, 1), (Integer)modelo.getValueAt(index, 3),(Double)modelo.getValueAt(index, 2) , (Color)modelo.getValueAt(index, 4));
+            mascota = m;
             
             limpiarComandField();
         }
@@ -636,12 +637,20 @@ public class Main extends javax.swing.JFrame {
             int id = Integer.parseInt(token[3]);
             
             if (items.get(id).isAlimento()) {
-                
+                mascota.setVida(mascota.getVida());
             }
             limpiarComandField();
         }
         else if(token[0].equals("!pet") && token[1].equals("list")){
-            System.out.println("!pet list");
+            String prin = ("\n-- Mascotas --");
+            
+            String texto = TextArea.getText();
+            
+            for (int i = 0; i < mascotas.size(); i++) {
+                texto = texto + prin + (i+") " + mascotas.get(i));
+            }
+            TextArea.setText(texto);
+            
             limpiarComandField();
         }
         else if(token[0].equals("!adopt")){
@@ -676,16 +685,46 @@ public class Main extends javax.swing.JFrame {
             limpiarComandField();
         }
         else if(token[0].equals("!mine")){
-            System.out.println("!mine");
+            
+            String text = TextArea.getText();
+            String text2 = "";
+            if (Integer.parseInt(token[1]) > zonas.size()) {
+                text2 = "Elija un numero adecuado";
+                TextArea.setText("\n" + text + text2);
+            }else{
+                Zona temp = new Zona();
+                temp = zonas.get(Integer.parseInt(token[1]));
+                jugador.setDinero(jugador.getDinero() + temp.getRemuneracion());
+                text2 = "\n" + "Dinero: " + jugador.getDinero();
+                TextArea.setText("\n" + text + text2);
+            }
             limpiarComandField();
         }
         else if(token[0].equals("!fish")){
-            System.out.println("!fish");
+            String text = TextArea.getText();
+            String text2 = "";
+            if (Integer.parseInt(token[1]) > zonas.size()) {
+                text2 = "Elija un numero adecuado";
+                TextArea.setText("\n" + text + text2);
+            }else{
+                Zona temp = new Zona();
+                temp = zonas.get(Integer.parseInt(token[1]));
+                jugador.setDinero(jugador.getDinero() + temp.getRemuneracion());
+                text2 = "\n" + "Dinero: " + jugador.getDinero();
+                TextArea.setText("\n" + text + text2);
+            }
             limpiarComandField();
         }
         else if(token[0].equals("!zone") && token[1].equals("list")){
-            System.out.println("!zone list");
-            limpiarComandField();
+            String pr = ("\n-- Zonas --");
+            
+            String texto = TextArea.getText();
+            
+            for (int i = 0; i < zonas.size(); i++) {
+                texto = texto + pr +(i+") " + zonas.get(i));
+            }
+            TextArea.setText(texto);
+            
         }
         else if(token[0].equals("!sell")){
             System.out.println("!sell idItem");
@@ -712,7 +751,7 @@ public class Main extends javax.swing.JFrame {
             limpiarComandField();
         }
         else if(token[0].equals("!b")){
-            System.out.println("!b");
+            System.out.println("Diner");
             limpiarComandField();
         }
         
@@ -819,5 +858,7 @@ public class Main extends javax.swing.JFrame {
 
 HiloTable hilodetabla;
 HiloBarra hilodebarra;
+Jugador jugador = new Jugador(0, 0);
+
 
 }

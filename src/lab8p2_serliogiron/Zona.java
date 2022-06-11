@@ -25,6 +25,11 @@ public class Zona {
     double derrumbe;//en caso de minar)
     double atacado;//megalodon
 
+    public Zona() {
+    }
+    
+    
+
     public Zona(int id, String nombre, double derrumbe, double atacado) {
         this.id = id;
         this.nombre = nombre;
